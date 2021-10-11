@@ -2,16 +2,10 @@ import requests
 import time
 import discord
 from discord.ext import commands, tasks
-
-
-
-token = ''
-channelId = 697893213410951211
+from secrets import token, channelId
 
 
 bot = commands.Bot(command_prefix='./')
-
-
 
 @bot.event
 async def on_ready():
@@ -35,9 +29,9 @@ async def send():
     for asset in resp["asset_events"]:
 
         embed = discord.Embed(
-        title = f'{asset["asset"]["name"]} just got sold!',
-        url = asset['asset']['permalink'],
-        colour = discord.Colour.green())
+            title = f'{asset["asset"]["name"]} just got sold!',
+            url = asset['asset']['permalink'],
+            colour = discord.Colour.green())
         
         embed.set_image(url = asset["asset"]["image_thumbnail_url"])
 
